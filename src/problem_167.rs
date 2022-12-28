@@ -2,8 +2,8 @@
 // iterates the remaining right hand side items in reverse. This solution gives us 74ms,
 // and beats 16.3% of solutions.
 fn two_sum(numbers: Vec<i32>, target: i32) -> Vec<i32> {
-    for (left_idx, left) in (&numbers).iter().enumerate() {
-        for (right_idx, right) in (&numbers[left_idx + 1..]).iter().enumerate().rev() {
+    for (left_idx, left) in numbers.iter().enumerate() {
+        for (right_idx, right) in numbers[left_idx + 1..].iter().enumerate().rev() {
             println!("right_idx: {}, right: {}", right_idx, right);
             let sum = left + right;
             if sum > target {
@@ -35,7 +35,7 @@ fn two_sum_alt(numbers: Vec<i32>, target: i32) -> Vec<i32> {
         } else if value > target {
             right_val = right_iter.next().unwrap();
         } else {
-            return vec![left_val.0 as i32 + 1, right_val.0 as i32 + 1]
+            return vec![left_val.0 as i32 + 1, right_val.0 as i32 + 1];
         }
         value = left_val.1 + right_val.1;
     }
@@ -54,7 +54,7 @@ fn two_sum_alt2(numbers: Vec<i32>, target: i32) -> Vec<i32> {
         } else if value > target {
             right -= 1;
         } else {
-            return vec![left as i32 + 1, right as i32 + 1]
+            return vec![left as i32 + 1, right as i32 + 1];
         }
     }
 }
