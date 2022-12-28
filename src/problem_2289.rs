@@ -1,5 +1,8 @@
 use std::collections::VecDeque;
 
+// This algorithm is quite strange compared to the description of the problem.
+// It is best to think of it as a sort of semi-aggregating window function that operates
+// on the vector in reverse.
 pub fn total_steps(nums: Vec<i32>) -> i32 {
     let mut stack: VecDeque<(i32, i32)> = VecDeque::new();
     let mut current_max_steps = 0;
