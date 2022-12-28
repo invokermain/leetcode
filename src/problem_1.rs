@@ -65,8 +65,7 @@ mod tests {
 
     #[test]
     fn test_case_5() {
-        let vec: Vec<i32> = (1..10001).collect();
-        assert_eq!(two_sum_1(vec.clone(), 19999), vec![9998, 9999]);
-        assert_eq!(two_sum_2(vec.clone(), 19999), vec![9998, 9999]);
+        assert_eq!(two_sum_1((1..10001).collect(), 19999), vec![9998, 9999]);
+        assert_eq!(two_sum_2((1..10001).collect(), 19999), vec![9998, 9999]);
     }
 }
