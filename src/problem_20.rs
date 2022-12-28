@@ -6,7 +6,7 @@ fn reflect(left: char) -> char {
         ')' => '(',
         ']' => '[',
         '}' => '{',
-        _ => panic!("Unhandled match arm")
+        _ => panic!("Unhandled match arm"),
     }
 }
 
@@ -15,12 +15,16 @@ fn is_valid(s: String) -> bool {
 
     for item in s.chars() {
         match item {
-            val  @ (')' | '}' | ']') => if stack.pop_front().unwrap_or('x') != reflect(val) { return false; },
-            val =>  stack.push_front(val)
+            val @ (')' | '}' | ']') => {
+                if stack.pop_front().unwrap_or('x') != reflect(val) {
+                    return false;
+                }
+            }
+            val => stack.push_front(val),
         };
     }
 
-    return stack.is_empty();
+    stack.is_empty()
 }
 
 #[cfg(test)]
