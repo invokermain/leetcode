@@ -1,10 +1,11 @@
+use std::cmp::Ordering;
+
 // This algorithm iterates the vector in the forward direction, and then for each item
 // iterates the remaining right hand side items in reverse. This solution gives us 74ms,
 // and beats 16.3% of solutions.
 fn two_sum(numbers: Vec<i32>, target: i32) -> Vec<i32> {
     for (left_idx, left) in numbers.iter().enumerate() {
         for (right_idx, right) in numbers[left_idx + 1..].iter().enumerate().rev() {
-            println!("right_idx: {}, right: {}", right_idx, right);
             let sum = left + right;
             if sum > target {
                 continue;
@@ -20,7 +21,7 @@ fn two_sum(numbers: Vec<i32>, target: i32) -> Vec<i32> {
 }
 
 // This solution is faster as it is O(N) at most I believe. At most it can only traverse
-// the input array once. This solution takes 2ms and beats 84.8% of solutions.
+// the input array once. This solution takes 0ms and beats 100% of solutions.
 fn two_sum_alt(numbers: Vec<i32>, target: i32) -> Vec<i32> {
     let mut left_iter = numbers.iter().enumerate();
     let mut right_iter = numbers.iter().enumerate().rev();
@@ -30,32 +31,28 @@ fn two_sum_alt(numbers: Vec<i32>, target: i32) -> Vec<i32> {
     let mut value = left_val.1 + right_val.1;
 
     loop {
-        if value < target {
-            left_val = left_iter.next().unwrap();
-        } else if value > target {
-            right_val = right_iter.next().unwrap();
-        } else {
-            return vec![left_val.0 as i32 + 1, right_val.0 as i32 + 1];
-        }
+        match value.cmp(&target) {
+            Ordering::Less => left_val = left_iter.next().unwrap(),
+            Ordering::Equal => return vec![left_val.0 as i32 + 1, right_val.0 as i32 + 1],
+            Ordering::Greater => right_val = right_iter.next().unwrap(),
+        };
         value = left_val.1 + right_val.1;
     }
 }
 
-// This solution is faster as it is O(N) at most I believe. At most it can only traverse
-// the input array once. This solution takes 2ms and beats 84.8% of solutions.
+// This solution is an optimisation or simplification of the above that just maintains two
+// indexes. This solution takes 0ms and beats 100% of solutions.
 fn two_sum_alt2(numbers: Vec<i32>, target: i32) -> Vec<i32> {
     let mut left = 0;
     let mut right = numbers.len() - 1;
 
     loop {
         let value = numbers[left] + numbers[right];
-        if value < target {
-            left += 1;
-        } else if value > target {
-            right -= 1;
-        } else {
-            return vec![left as i32 + 1, right as i32 + 1];
-        }
+        match value.cmp(&target) {
+            Ordering::Less => left += 1,
+            Ordering::Greater => right -= 1,
+            Ordering::Equal => return vec![left as i32 + 1, right as i32 + 1],
+        };
     }
 }
 
