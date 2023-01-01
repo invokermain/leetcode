@@ -4,6 +4,7 @@ mod problem_1;
 mod problem_13;
 mod problem_1337;
 mod problem_1342;
+mod problem_1480;
 mod problem_150;
 mod problem_155;
 mod problem_167;
