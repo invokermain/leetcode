@@ -7,6 +7,7 @@ mod problem_1342;
 mod problem_1480;
 mod problem_150;
 mod problem_155;
+mod problem_1588;
 mod problem_167;
 mod problem_1672;
 mod problem_20;
