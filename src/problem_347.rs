@@ -10,7 +10,7 @@ fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
     let mut values: Vec<(i32, u16)> = values_map.into_iter().collect();
     values.sort_by_key(|x| x.1);
     values.reverse();
-    values[..k as usize].iter().map(|x| x.0 as i32).collect()
+    values[..k as usize].iter().map(|x| x.0).collect()
 }
 
 #[cfg(test)]

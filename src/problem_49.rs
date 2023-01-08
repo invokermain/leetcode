@@ -3,7 +3,7 @@ use std::collections::HashMap;
 // See problem_242.rs for some context. This is just a simple extension of that.
 // This algorithm is judged at 7ms (95.77%) and 5.3MB (40%).
 fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
-    let mut groups = HashMap::new();
+    let mut groups: HashMap<[u16; 26], Vec<String>> = HashMap::new();
 
     for str in strs {
         let mut key_array = [0u16; 26];
@@ -11,7 +11,7 @@ fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
             key_array[*val as usize - 97] += 1;
         }
 
-        groups.entry(key_array).or_insert(vec![]).push(str);
+        groups.entry(key_array).or_default().push(str);
     }
 
     groups.into_values().collect()
