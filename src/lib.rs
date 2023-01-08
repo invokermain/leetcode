@@ -1,6 +1,7 @@
 #![allow(dead_code)]
 
 mod problem_1;
+mod problem_121;
 mod problem_13;
 mod problem_1337;
 mod problem_1342;
