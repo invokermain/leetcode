@@ -23,5 +23,6 @@ mod problem_3;
 mod problem_347;
 mod problem_383;
 mod problem_412;
+mod problem_424;
 mod problem_49;
 mod problem_876;
